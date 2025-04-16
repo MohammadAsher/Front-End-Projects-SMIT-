@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Voting System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Online Voting System</h1>
+  
+  <div class="main-card">
+    <h2>Vote for Your Favorite Candidate</h2>
+    <div class="container">
+      <div class="candidate" id="candidate1" onclick="vote('candidate1')">
+        <h3>M.Asher</h3>
+        <p>Votes: <span class="vote-count" id="votes1">0</span></p>
+      </div>
+      <div class="candidate" id="candidate2" onclick="vote('candidate2')">
+        <h3>Zaid</h3>
+        <p>Votes: <span class="vote-count" id="votes2">0</span></p>
+      </div>
+      <div class="candidate" id="candidate3" onclick="vote('candidate3')">
+        <h3>Abdul Moiz</h3>
+        <p>Votes: <span class="vote-count" id="votes3">0</span></p>
+      </div>
+
+    </div>
+  </div>
+
+  <h2 id="winnerMessage"></h2>
+  
+  <script src="script.js"></script>
+</body>
+</html>

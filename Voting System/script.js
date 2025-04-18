@@ -1,16 +1,13 @@
-
 let votes1 = 0;
 let votes2 = 0;
 let votes3 = 0;
-let isVotingOpen = true; 
+let votes4 = 0;
+let isVotingOpen = true;
 
-
+// VOTE FUNCTION
 function vote(candidate) {
-  if (!isVotingOpen) {
-    return; 
-  }
+  if (!isVotingOpen) return;
 
- 
   if (candidate === 'candidate1') {
     votes1++;
     document.getElementById('votes1').innerText = votes1;
@@ -24,43 +21,42 @@ function vote(candidate) {
     votes4++;
     document.getElementById('votes4').innerText = votes4;
   }
-
-  
-  checkForWinner();
 }
 
+// TIMER FUNCTION
+let totalTime = 300; // 5 minutes in seconds
 
-function checkForWinner() {
+function startTimer() {
+  const timerDisplay = document.getElementById('timer');
+
+  const interval = setInterval(() => {
+    let minutes = Math.floor(totalTime / 60);
+    let seconds = totalTime % 60;
+    timerDisplay.innerText = `Time Left: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+
+    if (totalTime <= 0) {
+      clearInterval(interval);
+      isVotingOpen = false;
+      decideWinner(); // Automatically decide winner after time ends
+    }
+
+    totalTime--;
+  }, 1000);
+}
+
+// AUTO DECIDE WINNER
+function decideWinner() {
+  let maxVotes = Math.max(votes1, votes2, votes3, votes4);
   let winner = '';
-  if (votes1 >= 2) {
-    winner = 'M.Asher';
-  } else if (votes2 >= 2) {
-    winner = 'Zaid';
-  } else if (votes3 >= 2) {
-    winner = 'Abdul Moiz';
-  } 
 
-  if (winner) {
-   
-    document.getElementById('winnerMessage').innerText = winner + ' Wins!';
+  if (maxVotes === votes1) winner = 'M.Asher';
+  else if (maxVotes === votes2) winner = 'Zaid';
+  else if (maxVotes === votes3) winner = 'A.moiz';
+  else if (maxVotes === votes3) winner = 'Ahmed';
 
-    
-    triggerConfetti();
-
-    
-    isVotingOpen = false;
-  }
+  document.getElementById('winnerMessage').innerText = winner + ' Wins!';
+  triggerConfetti(); // Optional: call celebration
 }
 
-function triggerConfetti() {
-  const confettiCount = 100; 
-  for (let i = 0; i < confettiCount; i++) {
-    const confetti = document.createElement('div');
-    confetti.classList.add('confetti');
-    document.body.appendChild(confetti);
-
-    
-    confetti.style.left = Math.random() * 100 + 'vw';
-    confetti.style.animationDelay = Math.random() * 0.5 + 's';
-  }
-}
+// Call timer when page loads
+window.onload = startTimer;

@@ -9,6 +9,11 @@
 </head>
 <body>
   <h1>Online Voting System</h1>
+  <div id="timer" style="font-size: 24px; margin: 20px 0; font-weight: bold; color: #ff5722;">
+    Time Left: 5:00
+  </div>
+  
+  <div id="winnerMessage" style="font-size: 28px; color: #4caf50; font-weight: bold;"></div>
   
   <div class="main-card">
     <h2>Vote for Your Favorite Candidate</h2>
@@ -24,6 +29,10 @@
       <div class="candidate" id="candidate3" onclick="vote('candidate3')">
         <h3>Abdul Moiz</h3>
         <p>Votes: <span class="vote-count" id="votes3">0</span></p>
+      </div>
+      <div class="candidate" id="candidate4" onclick="vote('candidate4')">
+        <h3>Ahmed</h3>
+        <p>Votes: <span class="vote-count" id="votes4">0</span></p>
       </div>
 
     </div>
